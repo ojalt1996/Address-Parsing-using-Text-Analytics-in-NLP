@@ -37,27 +37,6 @@ class ParseAddress:
         demobj = AddressParse(address)  #creating object of the class in another module
         demobj.parse_street()       #call the method using that object
 
-
-    def parse_1line_address(self, sentence):  
-        
-        address_lines = [line for line in sentence.split('\n') if line]
-        zipobj = GetDetailsFromZip(sentence) #creating the object of class GetDetailsFromZip
-        city, state, zipcode = zipobj.get_details_from_zip()  #calling the method to get all details and store
-        print("city:"+city +"\n", "state:"+state + "\n", "zipcode:"+zipcode)
-        tokenizer = RegexpTokenizer(r'\w+')
-        tokens = tokenizer.tokenize(sentence)
-        custom_stopwords = ["This","home","address"]
-        stop_words = list(set(stopwords.words('english')))
-        total_stop = custom_stopwords + stop_words
-        filtered_words = [w for w in tokens if not w in total_stop]
-        for i in range(0, len(filtered_words)):
-            if filtered_words[i] in ['street', 'st', 'Avenue','ave','rd', 'dr','hwy','blvd','way','lane','route','loop']:
-                print("street is",filtered_words[i-2], filtered_words[i-1], filtered_words[i])
-        return " ".join(filtered_words)
-        o.find_person_name(sentence)     #function call to find person name
-        demobj = AddressParse(sentence)  #creating object of the class in another module
-        demobj.parse_street() 
-
 class GetDetailsFromZip:
 
     def __init__(self, address):
