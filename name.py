@@ -1,17 +1,14 @@
 
 
 address = """
-John Smith,
-876 St Margarets Court,
-Lawrence,
-MA 01841
+262 Swansea Mall Dr
+Suite 412,
+Swansea,
+MA 2777
 USA
 """
 import spacy
 import string
-import nltk
-from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
 import re 
 from code import GetZipInfo             #importing other module in this module
 from demo import AddressParse
