@@ -16,8 +16,7 @@ class GetZipInfo:
         :param zipcode:
         :return:
         """
- 
-        url = hostname+api_key+'/'+'info.'+format+'/'+zipcode+'/'+units
+        url = hostname+api_key+'/'+'info.'+format+'/'+zipcode+'/'+units  #url format
         return url
 
     @staticmethod
@@ -32,28 +31,28 @@ class GetZipInfo:
         :param response:
         :return:
         """
-        decoded_string = response.content.decode('utf8')  
-        info = json.loads(decoded_string)
+        decoded_string = response.content.decode('utf8')  #the response which is byte string format is decoded
+        info = json.loads(decoded_string)                  #this decoded string is converted to python object using json
         return info
 
-    def get_info_from_zip(self, zipcode):
+    def get_info_from_zip(self, zipcode): #method which specifies all the format of the url
         """
         :param zipcode:
         :return:
         """
-        host = 'https://www.zipcodeapi.com/rest/'
-        api_key = self.get_api_key()
+        host = 'https://www.zipcodeapi.com/rest/'  
+        api_key = self.get_api_key()  #method call
         format = 'json'
         units = 'miles'
-        url = self.construct_url(host, api_key, format, units, zipcode)
-        response = requests.get(url)
-        info = self.convert_json(response)
+        url = self.construct_url(host, api_key, format, units, zipcode) #method call
+        response = requests.get(url)  #get the response of the request 
+        info = self.convert_json(response) #convert the response using json
         return info
 
 
 if __name__ == '__main__':
     """Driver code"""
-    zipcode = input("Please enter the zipcode: ")
+    zipcode = input("Please enter the zipcode: ") 
     zipobj = GetZipInfo()
     info = zipobj.get_info_from_zip(zipcode)
     print(info)
